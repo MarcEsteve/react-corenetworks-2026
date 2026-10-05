@@ -1,10 +1,10 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+
+// Una función que retorna un array con información
+const retornaSpideyInfo = () => {
+    return ['Spidey', 2002];
+}
+
+// Desestructuración del array retornado
+const [ alias, anyAparicion ] = retornaSpideyInfo();
+console.log(alias, anyAparicion); // Spidey 2002

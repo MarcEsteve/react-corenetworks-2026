@@ -1,21 +1,21 @@
 // Funciones en JS
 
 //Función normal
-function sumar( a, b ) {
-    return a + b;
+function sumar(a, b) {
+  return a + b;
 }
 
 //let resultadoSuma = sumar(2,3); // 5
 
 // Función de flecha
-const saludar1 = ( nombre ) => {
-    return `Hola, ${ nombre }`;
-}
+const saludar1 = (nombre) => {
+  return `Hola, ${nombre}`;
+};
 
 //saludar1('Marc');
 
 // Función de flecha simplificada
-const saludar2 = ( nombre, apellido ) => `Hola, ${nombre} ${apellido }`;
+const saludar2 = (nombre, apellido) => `Hola, ${nombre} ${apellido}`;
 
 // Función de flecha sin parámetros con retorno implícito
 const saludar3 = () => `Hola Mundo`;
@@ -25,19 +25,19 @@ const saludar3 = () => `Hola Mundo`;
 
 // console.log( saludar('Marc') )
 
-console.log( saludar2("Pedro","Jiménez") ); // Hola, Pedro Jiménez
-console.log( saludar3("Andreu") ); // Hola Mundo
+console.log(saludar2("Pedro", "Jiménez")); // Hola, Pedro Jiménez
+console.log(saludar3("Andreu")); // Hola Mundo
 
 // Función que retorna un objeto
 const getUser = () => ({
-        uid: '01234',
-        username: 'marceg'
+  uid: "01234",
+  username: "marceg",
 });
 
 // console.log(getUser());
 
 const user = getUser(); // { uid: '01234', username: 'marceg' }
-console.log(user); 
+console.log(user);
 
 // Tarea: transformar esta función a una función de flecha
 // y que retorne un objeto implícitamente:
@@ -48,14 +48,10 @@ console.log(user);
 //     }
 // }
 
-
 const getUsuarioActivo = (nombre) => ({
-        uid: '12345',
-        username: nombre
-    });
+  uid: "12345",
+  username: nombre,
+});
 
-
-
-const usuarioActivo = getUsuarioActivo('Marc');
-console.log( usuarioActivo );
-
+const usuarioActivo = getUsuarioActivo("Marc");
+console.log(usuarioActivo);

@@ -10,9 +10,9 @@ console.log(personajes[1]); // Miles Morales
 console.log(personajes[2]); // Gwen Stacy
 
 // Queremos el tercer personaje
-const [personaje1 ] = personajes; //personajes[0]
-const [ , personaje2 ] = personajes;
-const [ , , personaje3 ] = personajes;
+const [personaje1] = personajes; //personajes[0]
+const [ , personaje2 ] = personajes; //personajes[1]
+const [ , , personaje3 ] = personajes; //personajes[2]
 console.log(personaje3); // Gwen Stacy
 
 // Una función que retorna un array con información
