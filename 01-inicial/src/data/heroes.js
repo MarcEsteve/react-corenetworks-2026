@@ -1,5 +1,5 @@
 // Para poder usar este archivo, debes importarlo en otro archivo de JavaScript y aqui colocar "export" 
-const heroes = [
+export const heroes = [
     {
         id: 1,
         name: 'Batman',
