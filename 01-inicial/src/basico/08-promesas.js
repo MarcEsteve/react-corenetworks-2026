@@ -1,3 +1,13 @@
+//Concepto funciones asíncronas en JavaScript
+// setTimeout(() => {
+//  console.log('Esta instrucción se ejecuta después de 5 segundos, una única vez');
+// }, 5000);
+// console.warn('Esta es una advertencia linia 4 del código después de ller setTimeout');
+// setInterval(() => {
+//  console.log('Esta instrucción se ejecuta cada 5 segundos');
+// }, 5000);
+// console.error('Este es un mensaje de error línea 8 del código después de leer setInterval');
+
 // Concepto de promesas en JavaScript
 // Las promesas son objetos que representan la finalización (o el fracaso) de una operación asíncrona y su valor resultante.
 // https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Promise
@@ -10,17 +20,17 @@ import { getHeroeById } from "./05-import-export";
 // - resolve: se llama cuando la operación asíncrona se completa con éxito
 // - reject: se llama cuando la operación asíncrona falla
 
-// const promesa = new Promise((resolve, reject) => {
+const promesa = new Promise((resolve, reject) => {
 
-//   setTimeout(() => {
-//     resolve();
-//   },1000)
+  setTimeout(() => {
+    resolve();
+  },1000)
 
-// });
+});
 
-// promesa.then( () => {
-//   console.log("Se ejecutó la promesa");
-// });
+promesa.then( () => {
+  console.log("Se ejecutó la promesa");
+});
 
 // // Ejemplo de una promesa que se resuelve o se rechaza después de 2 segundos
 // const exito = false; // ✅ Pon esto en true o false para probar resolve o reject
