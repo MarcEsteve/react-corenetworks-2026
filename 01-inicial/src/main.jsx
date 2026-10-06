@@ -1,4 +1,6 @@
-import { heroes } from '../src/data/heroes';
+import heroes  from '../src/data/heroes';
+//Exportación cuando no es default
+// import {heroes}  from '../src/data/heroes';
 console.log( heroes ); 
 
 const getHeroeById = (id) =>{
@@ -12,8 +14,14 @@ const getHeroeById = (id) =>{
   });
 }
 
-console.log( getHeroeById(5) ); // { id: 2, name: 'Spiderman', owner: 'Marvel' }
+console.log( getHeroeById(2) ); // { id: 2, name: 'Spiderman', owner: 'Marvel' }
 
-const frutas = ["plátano", "kiwi", "sandía"];
+const frutas = ["plátano", "kiwi", "sandía", "manzana"];
 const result = frutas.filter((textoFruta) => textoFruta.length > 6);
 console.log(result); // Expected output: Array ["plátano"]
+
+const getHeroesByOwner = (propietario) =>
+  heroes.filter((heroe) => heroe.owner === propietario);
+
+console.log( getHeroesByOwner('Marvel') ); 
+// [{ id: 2, name: 'Spiderman', owner: 'Marvel' }, { id: 5, name: 'Wolverine', owner: 'Marvel' }]
