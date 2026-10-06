@@ -25,3 +25,4 @@ const getHeroesByOwner = (propietario) =>
 
 console.log( getHeroesByOwner('Marvel') ); 
 // [{ id: 2, name: 'Spiderman', owner: 'Marvel' }, { id: 5, name: 'Wolverine', owner: 'Marvel' }]
+//Hasta aqui exports e imports
