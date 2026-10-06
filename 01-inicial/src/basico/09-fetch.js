@@ -3,7 +3,7 @@
 
 //Create account > Create an API Key
 
-const apiKey = "QePFYqshr0FZmRQXiU0lzknZkm22pqyn"; // Reemplaza con tu propia API key de Giphy
+const apiKey = "yWdPXAvO46C6WXKmAx0Cz2jbiMWyaBzP"; // Reemplaza con tu propia API key de Giphy
 
 // Docs > GIPHY API > GIF & Sticker Endpoints > Random Endpoint
 //API Explorer > Random Endpoint
