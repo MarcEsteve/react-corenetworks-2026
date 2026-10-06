@@ -24,20 +24,20 @@ import heroes from "../data/heroes";
 //Find: devuelve el primer elemento que cumpla con la condición.
 // https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/find
 
-const getHeroeById = (id) =>{
-  return heroes.find((heroe) => {
-    if (heroe.id === id) {
-      return true;
+// const getHeroeById = (id) =>{
+//   return heroes.find((heroe) => {
+//     if (heroe.id === id) {
+//       return true;
       
-    } else {
-      return false;
-    }
-  });
-}
+//     } else {
+//       return false;
+//     }
+//   });
+// }
 
-console.log( getHeroeById(2) ); // { id: 2, name: 'Spiderman', owner: 'Marvel' }
+// console.log( getHeroeById(2) ); // { id: 2, name: 'Spiderman', owner: 'Marvel' }
 
-// export const getHeroeById = (id) => heroes.find((heroe) => heroe.id === id);
+export const getHeroeById = (id) => heroes.find((heroe) => heroe.id === id);
 
 // console.log( getHeroeById(2) );
 
