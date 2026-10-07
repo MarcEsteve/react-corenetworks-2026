@@ -1,3 +1,15 @@
+// import React from "react";
+import Titulo from './components/Titulo';
+import Saludo from './components/Saludo';
+
 export default function App() {
-  return <h1>¡Hola React + TypeScript + SWC! 👋</h1>;
+  return (
+    <main style={{ padding: 24 }}>
+      <Titulo />
+      <Saludo nombre="Pedro" />
+      <Saludo nombre="Raúl" />
+      <Saludo nombre="Nuño" />
+    </main>
+  );
 }
+
