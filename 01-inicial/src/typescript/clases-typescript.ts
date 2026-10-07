@@ -1,17 +1,19 @@
 // Clases en TypeScript
 
 class Jugador {
-  //Atributos
-  public nombre: string; // public no es obligatorio porque es el modificador por defecto
-  apellidos: string; // es public también
-  private goles: number;
-  // Constructor
+  // Atributos
+  public nombre: string; // "public" es el modificador por defecto, se puede omitir
+  apellidos: string; // sin modificador también es público
+  private goles: number; // solo accesible dentro de la propia clase
+
+  // Constructor: inicializa los atributos al crear la instancia
   constructor(name: string, surname: string) {
     this.nombre = name;
     this.apellidos = surname;
     this.goles = 0;
   }
-  // Métodos (getters y setters)
+
+  // Getter y setter para acceder/modificar el atributo privado "goles"
   setGoles(goles: number): void {
     this.goles = goles;
   }
@@ -26,8 +28,10 @@ console.log(jugador1.getGoles()); //0
 jugador1.setGoles(5);
 console.log(jugador1.getGoles()); //5
 
-// Clases con constructor breve (si declaramos los parámetros del constructor con
-// modificador de acceso se crean las propiedades con el mismo nombre)
+// Constructor breve (shorthand): al anteponer un modificador de acceso
+// (public/private/protected) a un parámetro del constructor, TypeScript
+// crea y asigna automáticamente la propiedad, sin necesidad de declararla
+// aparte ni de escribir "this.x = x" manualmente.
 
 class Player {
   constructor(
@@ -36,8 +40,7 @@ class Player {
     private goals: number,
   ) {}
 
-  // setter y getters...
-
+  // Getter del atributo privado "goals"
   getGoles(): number {
     return this.goals;
   }
@@ -46,15 +49,16 @@ class Player {
 let jugador2 = new Player("Lionel", "Messi", 3);
 console.log(jugador2.getGoles()); //3
 
-// Interfaces (como tipado estructural)
+// Interfaces como tipado estructural: definen la "forma" que debe tener un
+// objeto (qué propiedades tiene y de qué tipo), sin necesidad de una clase.
 
 interface EstadoBoton {
   hidden: boolean;
   disabled: boolean;
   waiting: boolean;
-  backgroundColor?: string; // Se pueden declarar como opcionales
-  fontSize?: number; // Se pueden declarar como opcionales
-  color?: string; // Se pueden declarar como opcionales
+  backgroundColor?: string; // el "?" marca la propiedad como opcional
+  fontSize?: number; // opcional
+  color?: string; // opcional
 }
 
 let estadoBotonEnvio: EstadoBoton = {
@@ -65,10 +69,11 @@ let estadoBotonEnvio: EstadoBoton = {
   fontSize: 20,
   color: "white",
 
-  //backgroundColor: 'green' Al ser opcional si no se incluye no arroja error
+  // Al ser opcionales, omitir estas propiedades no provoca error
 };
 
-// Interfaces como implementaciones obligatorias para clases
+// Interfaces como contrato obligatorio para clases: una clase que usa
+// "implements" debe definir todas las propiedades y métodos de la interfaz.
 
 interface DatosMaestros {
   razonSocial: string;
@@ -82,21 +87,13 @@ interface DatosMaestros {
 }
 
 class Proveedor implements DatosMaestros {
-  // razonSocial: string;
-  // cif: string;
-
-  // constructor(razonSocialIn: string, cifIn: string) {
-  //     this.razonSocial = razonSocialIn;
-  //     this. = cifIn;
-  // }
-
-  //Contructor simplificado
+  // Constructor breve: crea y asigna "razonSocial" y "cif" automáticamente
   constructor(
     public razonSocial: string,
     public cif: string,
   ) {}
 
-  //Getters y setters de las propiedades privadas
+  // Getters y setters exigidos por la interfaz DatosMaestros
   getCif(): string {
     return this.cif;
   }
@@ -111,12 +108,13 @@ class Proveedor implements DatosMaestros {
   }
 }
 
-// Herencia en TypeScript
+// Herencia en TypeScript: una clase ("subclase") puede extender otra
+// ("superclase") con "extends", reutilizando y ampliando su funcionalidad.
 
 class Employee {
-  name: string;
-  protected age: number; // Accesible desde clases que hereden de Employee
-  private mobileNumber: string; // Accessible solo desde la clase Employee, getters y setters
+  name: string; // público: accesible desde cualquier parte
+  protected age: number; // accesible desde Employee y sus clases hijas (extends)
+  private mobileNumber: string; // accesible solo dentro de Employee
 
   constructor(name: string, age: number) {
     this.name = name;
@@ -130,12 +128,13 @@ class Employee {
 class Manager extends Employee {
   role: string;
 
+  // "super(...)" llama al constructor de la clase padre (Employee)
   constructor(name: string, age: number, role: string) {
     super(name, age);
     this.role = role;
   }
 
-  // getters y setters de las propiedades de esta clase
+  // Getter y setter propios de Manager
   getRole(): string {
     return this.role;
   }
