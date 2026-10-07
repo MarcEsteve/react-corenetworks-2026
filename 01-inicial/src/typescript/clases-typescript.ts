@@ -116,7 +116,7 @@ class Proveedor implements DatosMaestros {
 class Employee {
   name: string;
   protected age: number; // Accesible desde clases que hereden de Employee
-  private mobileNumber: string;
+  private mobileNumber: string; // Accessible solo desde la clase Employee, getters y setters
 
   constructor(name: string, age: number) {
     this.name = name;
