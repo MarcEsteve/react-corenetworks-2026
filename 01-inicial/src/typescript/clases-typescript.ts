@@ -136,4 +136,11 @@ class Manager extends Employee {
   }
 
   // getters y setters de las propiedades de esta clase
+  getRole(): string {
+    return this.role;
+  }
+
+  setRole(role: string): void {
+    this.role = role;
+  }
 }
