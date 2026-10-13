@@ -1,0 +1,23 @@
+.boton-alertas {
+  border: none;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-weight: 600;
+}
+
+.activadas {
+  background-color: #047857; /* verde tipo DGT acceso permitido */
+  color: #fff;
+}
+
+.desactivadas {
+  background-color: #e5e7eb; /* gris claro */
+  color: #111;
+}
+
+.boton-alertas:hover {
+  transform: scale(1.05);
+}
