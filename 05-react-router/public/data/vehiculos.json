@@ -30,5 +30,13 @@
     "color": "Azul",
     "seguroEnVigor": true,
     "fechaUltimaITV": "2026-02-18"
+  },
+  {
+    "matricula": "3456NYP",
+    "marca": "Opel",
+    "modelo": "Astra",
+    "color": "Azul",
+    "seguroEnVigor": false,
+    "fechaUltimaITV": "2023-02-18"
   }
 ]

@@ -1,0 +1,212 @@
+:root {
+  --dgt-azul: #003f87;
+  --dgt-azul-oscuro: #002b5e;
+  --dgt-amarillo: #ffd100;
+  --dgt-rojo: #c8102e;
+  --dgt-verde: #047857;
+  --dgt-fondo: #f3f5f9;
+  --dgt-texto: #1f2937;
+  --dgt-borde: #d5dbe6;
+
+  font-family: "Segoe UI", system-ui, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light;
+  color: var(--dgt-texto);
+  background-color: var(--dgt-fondo);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  font-weight: 600;
+  color: var(--dgt-azul);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--dgt-rojo);
+  text-decoration: underline;
+}
+
+h1,
+h2 {
+  color: var(--dgt-azul);
+  line-height: 1.15;
+}
+h1 {
+  font-size: 2.2em;
+  margin: 0 0 0.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 4px solid var(--dgt-amarillo);
+  display: inline-block;
+}
+
+/* Cabecera: franja azul con línea amarilla de marca */
+.dgt-header {
+  background: var(--dgt-azul);
+  color: #fff;
+  border-bottom: 5px solid var(--dgt-amarillo);
+}
+.dgt-header__inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 14px 16px 0;
+}
+.dgt-marca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.dgt-marca__sigla {
+  background: var(--dgt-amarillo);
+  color: var(--dgt-azul-oscuro);
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  padding: 2px 12px;
+  border-radius: 4px;
+}
+.dgt-marca__nombre {
+  font-size: 0.95rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.dgt-nav {
+  display: flex;
+  gap: 4px;
+}
+.dgt-nav a {
+  color: #fff;
+  padding: 10px 16px;
+  border-bottom: 4px solid transparent;
+}
+.dgt-nav a:hover {
+  background: var(--dgt-azul-oscuro);
+  text-decoration: none;
+  color: #fff;
+}
+.dgt-nav a.active {
+  border-bottom-color: var(--dgt-amarillo);
+  background: var(--dgt-azul-oscuro);
+}
+
+.dgt-main {
+  flex: 1;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.dgt-cargando {
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  background: #fff8d6;
+  border-left: 4px solid var(--dgt-amarillo);
+  border-radius: 4px;
+}
+
+.dgt-footer {
+  background: var(--dgt-azul-oscuro);
+  color: #cbd5e1;
+  border-top: 4px solid var(--dgt-rojo);
+  text-align: center;
+  padding: 12px;
+}
+
+/* Formularios y botones */
+input {
+  font: inherit;
+  padding: 0.5em 0.8em;
+  border: 1px solid var(--dgt-borde);
+  border-radius: 6px;
+  background: #fff;
+}
+input:focus {
+  outline: 3px solid var(--dgt-amarillo);
+  border-color: var(--dgt-azul);
+}
+
+button {
+  border-radius: 6px;
+  border: 2px solid var(--dgt-azul);
+  padding: 0.5em 1.1em;
+  font-size: 1em;
+  font-weight: 600;
+  font-family: inherit;
+  color: #fff;
+  background-color: var(--dgt-azul);
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+button:hover {
+  background-color: var(--dgt-azul-oscuro);
+  border-color: var(--dgt-azul-oscuro);
+}
+button:focus-visible {
+  outline: 3px solid var(--dgt-amarillo);
+  outline-offset: 2px;
+}
+
+/* Tarjetas */
+.dgt-filtros {
+  margin: 12px 0 16px;
+  display: flex;
+  gap: 8px;
+}
+.dgt-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.dgt-tarjeta {
+  background: #fff;
+  border: 1px solid var(--dgt-borde);
+  border-left: 5px solid var(--dgt-azul);
+  border-radius: 6px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+.dgt-tarjeta code {
+  background: #eef2f8;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.dgt-estado {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+}
+.dgt-estado--ok {
+  background: var(--dgt-verde);
+}
+.dgt-estado--ko {
+  background: var(--dgt-rojo);
+}
