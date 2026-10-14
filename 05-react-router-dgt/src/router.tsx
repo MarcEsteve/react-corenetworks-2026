@@ -1,17 +1,16 @@
-import {
-  createBrowserRouter,
-  redirect,
-} from "react-router-dom";
+import { createBrowserRouter, redirect } from "react-router-dom";
 import Layout from "./routes/Layout";
 import Home from "./routes/Home";
 import Vehiculos from "./routes/Vehiculos";
 import VehiculoDetalle from "./routes/VehiculoDetalle";
 import type { Vehiculo } from "./types/vehiculo";
+import Servicios from "./routes/Servicios";
 
 // Utilidad de fetch con manejo de error
 async function getVehiculos(): Promise<Vehiculo[]> {
   const res = await fetch("/data/vehiculos.json");
-  if (!res.ok) throw new Response("No se pudo cargar el listado", { status: res.status });
+  if (!res.ok)
+    throw new Response("No se pudo cargar el listado", { status: res.status });
   return res.json();
 }
 
@@ -22,15 +21,22 @@ export async function vehiculosLoader() {
 }
 
 // Loader detalle (busca por matrícula)
-export async function vehiculoDetalleLoader({ params }: { params: { matricula?: string } }) {
+export async function vehiculoDetalleLoader({
+  params,
+}: {
+  params: { matricula?: string };
+}) {
   const { matricula } = params;
   if (!matricula) throw redirect("/vehiculos"); // sin parámetro → redirige
 
   const vehiculos = await getVehiculos();
-  const v = vehiculos.find(x => x.matricula === matricula);
+  const v = vehiculos.find((x) => x.matricula === matricula);
 
   if (!v) {
-    throw new Response("Vehículo no encontrado", { status: 404, statusText: "No encontrado" });
+    throw new Response("Vehículo no encontrado", {
+      status: 404,
+      statusText: "No encontrado",
+    });
   }
   return { vehiculo: v };
 }
@@ -45,15 +51,29 @@ export const router = createBrowserRouter([
         path: "vehiculos",
         element: <Vehiculos />,
         loader: vehiculosLoader,
-        errorElement: <p style={{ padding: 24 }}>⚠️ No se pudo cargar el listado.</p>,
+        errorElement: (
+          <p style={{ padding: 24 }}>⚠️ No se pudo cargar el listado.</p>
+        ),
+      },
+      {
+        path: "servicios",
+        element: <Servicios />,
+        errorElement: (
+          <p style={{ padding: 24 }}>⚠️ No se pudo cargar esta página.</p>
+        ),
       },
       {
         path: "vehiculos/:matricula",
         element: <VehiculoDetalle />,
         loader: vehiculoDetalleLoader,
-        errorElement: <p style={{ padding: 24 }}>⚠️ Error al cargar el detalle.</p>,
+        errorElement: (
+          <p style={{ padding: 24 }}>⚠️ Error al cargar el detalle.</p>
+        ),
       },
-      { path: "*", element: <h1 style={{ padding: 24 }}>404 – No encontrado</h1> },
+      {
+        path: "*",
+        element: <h1 style={{ padding: 24 }}>404 – No encontrado</h1>,
+      },
     ],
   },
 ]);

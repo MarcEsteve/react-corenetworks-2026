@@ -18,6 +18,7 @@ export default function Layout() {
           <nav className="dgt-nav">
             <NavLink to="/" end>Inicio</NavLink>
             <NavLink to="/vehiculos">Vehículos</NavLink>
+            <NavLink to="/servicios">Servicios</NavLink>
           </nav>
         </div>
       </header>
