@@ -1,54 +1,74 @@
-# React + TypeScript + Vite
+# Pruebas con Vitest: espiar funciones con `vi.spyOn`
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este ejemplo comprueba que el control de velocidad avisa cuando un vehículo
+supera el límite. Para verificar esa interacción usamos un *spy*: una
+herramienta de Vitest que observa las llamadas a una función sin tener que
+reescribir el código que la utiliza.
 
-Currently, two official plugins are available:
+## 1. Función que envía la alerta
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+En [`src/utils/alertas.ts`](./src/utils/alertas.ts) definimos y exportamos la
+función que queremos observar:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```ts
+export function enviarAlerta(mensaje: string) {
+  console.log("🚨 ALERTA DGT:", mensaje);
+}
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 2. Función que controla la velocidad
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+En [`src/utils/controlVelocidad.ts`](./src/utils/controlVelocidad.ts)
+importamos `enviarAlerta` y la llamamos solo si la velocidad supera el límite:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```ts
+import { enviarAlerta } from "./alertas";
+
+export function verificarVelocidad(velocidad: number, limite: number) {
+  if (velocidad > limite) {
+    enviarAlerta("Exceso de velocidad detectado");
+  }
+}
+```
+
+## 3. El concepto de spy
+
+Un *spy* (espía) es una función "observadora": registra cuántas veces se
+llamó, con qué argumentos y qué devolvió. En React se usa para comprobar
+interacciones sin depender de su efecto real, por ejemplo que un `onClick` o
+un callback recibido por props se ejecuta al interactuar con un componente.
+
+En [`src/utils/controlVelocidad.test.ts`](./src/utils/controlVelocidad.test.ts)
+usamos `vi.spyOn(alertas, "enviarAlerta")`: espía la función real (que sigue
+ejecutándose) y permite comprobar con `toHaveBeenCalled`,
+`toHaveBeenCalledTimes` y `toHaveBeenCalledWith` que se avisó con el mensaje
+esperado. `spy.mockRestore()` devuelve la función a su estado original.
+
+### 3.1 Espía vacío con `vi.fn()`
+
+[`src/utils/spyFn.test.ts`](./src/utils/spyFn.test.ts): `vi.fn()` crea un
+espía vacío, sin implementación, ideal para simular un callback. Se pasa a
+`forEach` y después se verifica el número de llamadas
+(`toHaveBeenCalledTimes(3)`) y los argumentos (`toHaveBeenCalledWith("rojo")`).
+
+### 3.2 Espía con valor de retorno
+
+[`src/utils/spyRetorno.test.ts`](./src/utils/spyRetorno.test.ts):
+`vi.fn(() => "OK")` crea un espía con una implementación que devuelve un
+valor. Además de comprobar los argumentos con `toHaveBeenCalledWith`, se
+verifica lo devuelto con `toHaveReturnedWith("OK")`.
+
+## 4. Ejecutar las pruebas
+
+Desde esta carpeta (`04-testing-vitest`), ejecuta:
+
+```bash
+npm test -- --run
+```
+
+Para iniciar Vitest en modo interactivo y volver a ejecutar las pruebas cuando
+cambien los archivos:
+
+```bash
+npm test
 ```
