@@ -1,0 +1,34 @@
+[
+  {
+    "matricula": "1234ABC",
+    "marca": "Seat",
+    "modelo": "León",
+    "color": "Gris",
+    "seguroEnVigor": true,
+    "fechaUltimaITV": "2026-06-10"
+  },
+  {
+    "matricula": "5678XYZ",
+    "marca": "Renault",
+    "modelo": "Clio",
+    "color": "Rojo",
+    "seguroEnVigor": false,
+    "fechaUltimaITV": "2025-10-02"
+  },
+  {
+    "matricula": "9876ZXY",
+    "marca": "Honda",
+    "modelo": "Civic",
+    "color": "Blanco",
+    "seguroEnVigor": false,
+    "fechaUltimaITV": "2024-02-18"
+  },
+  {
+    "matricula": "9012KLM",
+    "marca": "Toyota",
+    "modelo": "Corolla",
+    "color": "Azul",
+    "seguroEnVigor": true,
+    "fechaUltimaITV": "2026-02-18"
+  }
+]
