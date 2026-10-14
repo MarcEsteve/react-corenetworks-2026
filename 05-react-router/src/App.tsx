@@ -3,6 +3,7 @@ import Layout from "./routes/Layout";
 import Home from "./routes/Home";
 import Vehiculos from "./routes/Vehiculos";
 import VehiculoDetalle from "./routes/VehiculoDetalle";
+import Nosotros from "./routes/Nosotros";
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="vehiculos" element={<Vehiculos />} />
+        <Route path="nosotros" element={<Nosotros />} />
         <Route path="vehiculos/:matricula" element={<VehiculoDetalle />} />
         <Route path="*" element={<h1>404 – No encontrado</h1>} />
       </Route>
