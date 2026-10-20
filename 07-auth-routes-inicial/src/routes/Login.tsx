@@ -1,4 +1,4 @@
-import { type FormEvent, useState } from "react";
+import { useState, type SubmitEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
 
@@ -11,7 +11,7 @@ export default function Login() {
   const state = location.state as { from?: { pathname: string } } | null;
   const from = state?.from?.pathname || "/dashboard";
 
-  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
     await login(name || "Usuario");
