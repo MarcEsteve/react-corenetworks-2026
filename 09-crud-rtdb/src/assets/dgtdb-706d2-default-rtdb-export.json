@@ -1,0 +1,64 @@
+{
+  "usuarios": {
+    "-Oc5NR70vcj1BgbOMldb": {
+      "email": "marc@pr0j3ct.com",
+      "nombre": "marc",
+      "rol": "admin"
+    },
+    "-P4SxyG-C0UCMSCFmPnb": {
+      "email": "fer@dgt.es",
+      "nombre": "fernando",
+      "rol": "user"
+    },
+    "-P4Sy7wimfCgBUeqFMFw": {
+      "email": "juan@dgt.es",
+      "nombre": "Juan",
+      "rol": "admin"
+    },
+    "-P4Sy_MyNlkHy_5K19oT": {
+      "email": "alex@dgt.es",
+      "nombre": "alejandro",
+      "rol": "user"
+    },
+    "nuno-dgt": {
+      "email": "nuno@dgt.es",
+      "nombre": "nuño",
+      "rol": "user"
+    },
+    "alvaro-dgt": {
+      "email": "alvaro@dgt.es",
+      "nombre": "alvaro",
+      "rol": "user"
+    },
+    "eduardo-dgt": {
+      "email": "eduardo@dgt.es",
+      "nombre": "eduardo",
+      "rol": "user"
+    },
+    "francisco-dgt": {
+      "email": "francisco@dgt.es",
+      "nombre": "francisco",
+      "rol": "user"
+    },
+    "miguel-dgt": {
+      "email": "miguel@dgt.es",
+      "nombre": "miguel",
+      "rol": "user"
+    },
+    "pedro-dgt": {
+      "email": "pedro@dgt.es",
+      "nombre": "pedro",
+      "rol": "user"
+    },
+    "raul-dgt": {
+      "email": "raul@dgt.es",
+      "nombre": "raul",
+      "rol": "user"
+    },
+    "xavier-dgt": {
+      "email": "xavier@dgt.es",
+      "nombre": "xavier",
+      "rol": "user"
+    }
+  }
+}
