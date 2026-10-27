@@ -1,0 +1,25 @@
+:root{
+  --dgt-blue:#0055A4;
+  --dgt-yellow:#FFD200;
+  --text:#0b1230;
+  --muted:#6b7280;
+  --card:#ffffff;
+  --bg:#f6f8ff;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text)}
+.dgt-header{background:var(--dgt-blue);color:white;padding:24px 16px}
+.dgt-brand{display:flex;align-items:center;gap:12px}
+.dgt-brand img{height:36px}
+.dgt-sub{opacity:.9;margin:8px 0 0}
+.dgt-main{max-width:720px;margin:24px auto;padding:0 16px}
+.dgt-form{display:flex;gap:8px;margin-bottom:16px}
+.dgt-input{flex:1;padding:12px 14px;border:1px solid #cbd5e1;border-radius:10px;font-size:16px}
+.dgt-button{background:var(--dgt-yellow);border:none;border-radius:10px;padding:12px 16px;font-weight:700;cursor:pointer}
+.dgt-card{background:var(--card);border:1px solid #e5e7eb;border-radius:16px;padding:18px;display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.dgt-plate{font-family:monospace;font-size:20px;letter-spacing:2px;background:#eef2ff;border:1px solid #c7d2fe;border-radius:10px;padding:10px 14px}
+.dgt-badge img{height:72px}
+.dgt-badge-label{text-align:center;margin-top:6px;font-weight:700}
+.dgt-muted{color:var(--muted)}
+.dgt-footer{text-align:center;color:#64748b;margin:24px 0}
+.logo-dgt{text-align: center;}
