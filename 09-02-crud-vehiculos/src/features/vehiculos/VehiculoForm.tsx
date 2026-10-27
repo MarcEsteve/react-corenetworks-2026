@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../app/store";
+import type { AppDispatch } from "../../app/store";
 import { addVehiculo } from "./vehiculosSlice";
 
 export default function VehiculoForm() {
@@ -16,8 +16,9 @@ export default function VehiculoForm() {
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value, type, checked } = e.target;
-    setVehiculo({ ...vehiculo, [name]: type === "checkbox" ? checked : value });
+    const { name, value, type } = e.target;
+    const val = type === "checkbox" ? (e.target as HTMLInputElement).checked : type === "number" ? Number(value) : value;
+    setVehiculo({ ...vehiculo, [name]: val });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
