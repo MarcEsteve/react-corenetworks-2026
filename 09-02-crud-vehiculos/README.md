@@ -166,13 +166,23 @@ export const deleteVehiculo = createAsyncThunk("vehiculos/delete", async (id: st
 
 1. Entrar en el directorio del ejercicio:
    ```bash
-   cd 09-crud-vehiculos
+   cd 09-02-crud-vehiculos
    ```
 
-2. Instalar dependencias:
+2. Instalar dependencias del proyecto:
    ```bash
    npm install
    ```
+
+   > **Instalación de dependencias clave (si configuras el proyecto desde cero):**
+   > - **Firebase** (servicios en la nube y base de datos Firestore):
+   >   ```bash
+   >   npm i firebase
+   >   ```
+   > - **Redux Toolkit y React Redux** (para la gestión del contexto y estado global):
+   >   ```bash
+   >   npm i @reduxjs/toolkit react-redux
+   >   ```
 
 3. Iniciar el servidor de desarrollo:
    ```bash
