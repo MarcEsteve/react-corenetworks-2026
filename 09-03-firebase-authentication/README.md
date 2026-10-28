@@ -1,54 +1,44 @@
-# React + TypeScript + Vite
+# Firebase Authentication y Firestore
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Adaptación del ejercicio `09-firestore-auth` del repositorio de MarcEsteve, commit `abddfdf47ea56db1902b81eeba963dc3f3f28307`:
+https://github.com/MarcEsteve/curso-react-corenetworks/tree/abddfdf47ea56db1902b81eeba963dc3f3f28307/09-firestore-auth
 
-Currently, two official plugins are available:
+## Ejecutar
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```sh
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+En PowerShell, si la política de scripts impide ejecutar npm, utiliza `npm.cmd install` y `npm.cmd run dev`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Aplicación
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+`src/App.tsx` muestra `AuthAdvanced`, igual que la referencia. Permite registrarse con nombre, email y contraseña, confirmar la contraseña e iniciar sesión. El registro actualiza el nombre en Authentication y crea `usuarios/{uid}` en Firestore con `uid`, `nombre`, `email` y `createdAt`.
+
+Se conservan los ejemplos `FormularioSimple`, `FormularioValidado`, `AuthDemo`, `AuthSimple` y `FirestoreDemo`. Puedes cambiar el componente mostrado desde `App.tsx`. La lista de Firestore es un ejemplo independiente y necesita permisos adicionales de lectura de la colección.
+
+## Firebase
+
+`src/firebaseConfig.ts` utiliza el mismo proyecto `dgtdb-706d2` que la referencia y que `09-02-crud-vehiculos`. Para usar otro proyecto, sustituye su configuración web.
+
+En la consola de Firebase:
+
+1. Habilita Authentication → Método de inicio de sesión → Correo electrónico/contraseña.
+2. Crea la base de datos Cloud Firestore, si todavía no existe.
+3. Para el formulario avanzado, permite que cada usuario acceda a su propio documento. Integra esta regla con las reglas existentes del proyecto (sin reemplazar las de los otros ejercicios):
+
+```text
+match /usuarios/{uid} {
+  allow read, write: if request.auth != null && request.auth.uid == uid;
+}
+```
+
+Si el registro indica que la cuenta se creó pero el perfil no se guardó, comprueba Firestore. La cuenta ya existe en Authentication; puedes iniciar sesión con ella, pero ese inicio de sesión no vuelve a crear el documento pendiente.
+
+## Comprobaciones
+
+```sh
+npm run build
+npm run lint
 ```
