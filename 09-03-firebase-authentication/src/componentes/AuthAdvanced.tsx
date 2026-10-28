@@ -51,20 +51,20 @@ export default function AuthAdvanced() {
       setLoading(true);
 
       if (mode === "register") {
-        const cred = await createUserWithEmailAndPassword(auth, email, pass);
+        const cred = await createUserWithEmailAndPassword(auth, email.trim(), pass);
 
         // Opcional: poner displayName en el perfil de Auth
+        try {
         if (nombre) {
-          await updateProfile(cred.user, { displayName: nombre });
+          await updateProfile(cred.user, { displayName: nombre.trim() });
         }
 
         // Guardar perfil en Firestore (colección "usuarios", doc = uid)
-        try {
-          await setDoc(doc(db, "usuarios", cred.user.uid), {
-          uid: cred.user.uid,
-          email,
-          nombre,
-          createdAt: serverTimestamp(),
+        await setDoc(doc(db, "usuarios", cred.user.uid), {
+            uid: cred.user.uid,
+            email: email.trim(),
+            nombre: nombre.trim(),
+            createdAt: serverTimestamp(),
           });
         } catch {
           setErr("La cuenta se ha creado, pero no se pudo guardar el perfil. Revisa las reglas de Firestore. Ya puedes iniciar sesión con tu email y contraseña.");
@@ -73,7 +73,7 @@ export default function AuthAdvanced() {
 
         setOk("✅ Cuenta creada y perfil guardado.");
       } else {
-        await signInWithEmailAndPassword(auth, email, pass);
+        await signInWithEmailAndPassword(auth, email.trim(), pass);
         setOk("✅ Sesión iniciada.");
       }
     } catch (e: unknown) {
