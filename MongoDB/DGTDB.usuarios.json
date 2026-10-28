@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "68f6fb3e8a18dfc9f374403a"
+  },
+  "username": "admin",
+  "password": "admin123",
+  "name": "Ada Admin",
+  "role": "admin"
+},
+{
+  "_id": {
+    "$oid": "68f6fb3e8a18dfc9f374403b"
+  },
+  "username": "marta",
+  "password": "marta2025",
+  "name": "Marta García",
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "68f6fb3e8a18dfc9f374403c"
+  },
+  "username": "leo",
+  "password": "leo2025",
+  "name": "Leonardo Ruiz",
+  "role": "user"
+},
+{
+  "_id": {
+    "$oid": "6ae1d78f7f88c69e7d1b01d4"
+  },
+  "username": "alejandro",
+  "password": "132456",
+  "name": "Alejandro",
+  "role": "admin"
+}]
