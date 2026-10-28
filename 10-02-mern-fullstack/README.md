@@ -1,54 +1,47 @@
-# React + TypeScript + Vite
+# MERN · CRUD de vehículos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Listado, búsqueda, creación, edición y eliminación de vehículos con React, Express y MongoDB Atlas. Reutiliza el estilo de `09-06-completo` con los campos de la colección `dgt_vehiculos.vehiculos`.
 
-Currently, two official plugins are available:
+## 1. API de Express
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Configura `server/.env` con `PORT=4000` y `MONGODB_URI` (tienes una plantilla en `server/.env.example`). La conexión real está excluida de Git. Requiere Node.js 22 o posterior.
 
-## Expanding the ESLint configuration
+Desde `10-02-mern-fullstack`:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```sh
+cd server
+npm install
+npx nodemon index.js
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Deja esta terminal abierta. Comprueba **http://localhost:4000/api/vehiculos**: debe devolver JSON. En Atlas, el usuario debe tener lectura/escritura en `dgt_vehiculos` y tu IP debe tener acceso de red.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 2. React
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+En otra terminal, desde `10-02-mern-fullstack`:
+
+```sh
+npm install
+npm run dev
 ```
+
+Abre la URL de Vite. Su proxy envía `/api` a Express en el puerto `4000`. Si PowerShell bloquea npm/npx, usa `npm.cmd`/`npx.cmd`.
+
+## Probar
+
+- Pulsa **Añadir vehículo**, completa los campos y guarda.
+- Usa **Editar** para modificarlo y **Eliminar** para borrarlo tras confirmar.
+- Recarga la página para comprobar que los cambios persisten en Atlas.
+- El formulario utiliza `matricula`, `marca`, `modelo`, `color`, `seguroEnVigor` y `fechaUltimaITV` (AAAA-MM-DD). MongoDB genera `_id`.
+
+| Método | Ruta | Operación |
+| --- | --- | --- |
+| GET | `/api/vehiculos` | Listar |
+| GET | `/api/vehiculos/:id` | Consultar uno |
+| POST | `/api/vehiculos` | Crear |
+| PUT | `/api/vehiculos/:id` | Actualizar los seis campos |
+| DELETE | `/api/vehiculos/:id` | Eliminar |
+
+El backend está en `server/` y el frontend en `src/`. Este ejercicio cubre el CRUD; no incorpora el login ni los roles de Firebase. La API no tiene autenticación.
+
+Comprobaciones: `npm run build` y `npm run lint` en el frontend; `npm test` dentro de `server`. Las pruebas de API usan datos en memoria, sin modificar Atlas.
