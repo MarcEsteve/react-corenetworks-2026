@@ -55,12 +55,12 @@ export default function AuthAdvanced() {
 
         // Opcional: poner displayName en el perfil de Auth
         try {
-        if (nombre) {
-          await updateProfile(cred.user, { displayName: nombre.trim() });
-        }
+          if (nombre) {
+            await updateProfile(cred.user, { displayName: nombre.trim() });
+          }
 
-        // Guardar perfil en Firestore (colección "usuarios", doc = uid)
-        await setDoc(doc(db, "usuarios", cred.user.uid), {
+          // Guardar perfil en Firestore (colección "usuarios", doc = uid)
+          await setDoc(doc(db, "usuarios", cred.user.uid), {
             uid: cred.user.uid,
             email: email.trim(),
             nombre: nombre.trim(),
