@@ -8,6 +8,7 @@ import DevicesRounded from '@mui/icons-material/DevicesRounded'
 import AddRounded from '@mui/icons-material/AddRounded'
 import RestartAltRounded from '@mui/icons-material/RestartAltRounded'
 import { SweetAlertExamples } from './components/SweetAlertExamples'
+import { Login } from './components/Login'
 
 const features = [
   { icon: PaletteOutlined, title: 'Un estilo propio', description: 'Colores, tipografía y formas definidos en un tema central para toda tu aplicación.' },
@@ -73,6 +74,7 @@ function App() {
           </Box>
         </Box>
         <SweetAlertExamples />
+        <Login />
       </Box>
       <Divider />
       <Typography component="footer" variant="body2" color="text.secondary" sx={{ pt: 3 }}>Ecosistema React · Construido con Material UI y Roboto</Typography>
