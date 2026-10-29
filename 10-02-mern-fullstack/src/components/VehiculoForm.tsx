@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useState, type SubmitEvent } from 'react'
 import type { Vehiculo, VehiculoInput } from '../types/vehiculo'
 
 export default function VehiculoForm({ vehicle, onSubmit, onCancel }: {
@@ -15,7 +15,7 @@ export default function VehiculoForm({ vehicle, onSubmit, onCancel }: {
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
 
-  async function submit(event: FormEvent<HTMLFormElement>) {
+  async function submit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     if (saving) return
     setSaving(true)

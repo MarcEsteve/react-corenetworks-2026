@@ -59,7 +59,7 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <header className="topbar"><div className="brand"><span className="brand-mark">DGT</span><div className="brand-name">Gestión de vehículos<small>MongoDB Atlas · Express · React</small></div></div></header>
+      <header className="topbar"><div className="brand"><span className="brand-logo"><img src={`${import.meta.env.BASE_URL}assets/logo_dgt.svg`} alt="Dirección General de Tráfico" width="100" height="50" /></span><div className="brand-name">Gestión de vehículos<small>MongoDB Atlas · Express · React</small></div></div></header>
       <main className="main-content">
         <section className="workspace">
           <div className="page-heading"><div><span className="eyebrow">REGISTRO DE VEHÍCULOS</span><h1>Vehículos</h1><p>Consulta y actualiza la información de la flota.</p></div><button className="button button--accent" disabled={loading || deleting !== null} onClick={() => { setEditing(null); setAdding(true) }}>＋ Añadir vehículo</button></div>
@@ -68,7 +68,13 @@ export default function App() {
             <div className="summary-card"><div><small>SEGURO EN VIGOR</small><strong>{loading ? '—' : vehicles.filter(v => v.seguroEnVigor).length}</strong></div></div>
             <div className="summary-card"><div><small>SIN SEGURO EN VIGOR</small><strong>{loading ? '—' : vehicles.filter(v => !v.seguroEnVigor).length}</strong></div></div>
           </div>
-          {notice && <div className="form-alert" role="status">{notice}<button className="icon-button" aria-label="Cerrar aviso" onClick={() => setNotice('')}>×</button></div>}
+          {notice && (
+            <div className="form-alert form-alert--success" role="status" aria-atomic="true">
+              <span className="success-icon" aria-hidden="true">✓</span>
+              <span className="success-message">{notice}</span>
+              <button type="button" className="icon-button success-dismiss" aria-label="Cerrar aviso" onClick={() => setNotice('')}>×</button>
+            </div>
+          )}
           {error && <div className="form-alert" role="alert">{error} <button className="button button--outline" disabled={loading || deleting !== null} onClick={() => setRefresh(v => v + 1)}>Reintentar carga</button></div>}
           <div className="table-panel">
             <div className="panel-heading"><div><h2>Listado de vehículos</h2><p>{filtered.length} resultados</p></div><label className="search-field"><input aria-label="Buscar vehículos" placeholder="Matrícula, marca, modelo o color…" value={query} onChange={e => setQuery(e.target.value)} /></label></div>
