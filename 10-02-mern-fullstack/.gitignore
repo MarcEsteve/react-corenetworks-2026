@@ -26,4 +26,3 @@ dist-ssr
 # Configuración privada
 .env
 .env.*
-!.env.example
